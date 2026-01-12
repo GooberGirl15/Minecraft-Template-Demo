@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Template</title>
+    <link rel="stylesheet" href="minecraft.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+        <div class="title">
+            <img src="title.png">
+            <div id="music-player">
+        <audio id="soundtrack"src="https://lambda.vgmtreasurechest.com/soundtracks/minecraft/wbslavdc/2-13.%20Aria%20Math.mp3">
+        </audio>
+         <img id=sound-icon src="sound-icon-muted.png">
+        </div>
+        </div>
+        <div class="inventory-button-container">
+            <div id="inventory-button">
+                <p>Click to open the inventory.</p>
+                <audio id="open-button-sound" src="https://minecraft.wiki/images/transcoded/Select_pattern1.ogg/Select_pattern1.ogg.mp3">
+                </audio>
+            </div>
+        </div>
+        <div id="inventory" class="inventory-container">
+            <div class="minecraft-inventory">
+                <div class = "inventory-grid">
+
+                    <div class="item">
+                        <img src="sony-headphones-inventory.png">
+                        <div class="item-tooltip">
+                        <h3 class="header-text">SONY WH-100XM4 HEADPHONES</h3>
+                        <p>KINDA TRASH WOULDN'T RECOMMEND.</p>
+                        </div>
+                    </div>
+
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item">
+                        <img src="bullet-journal.png">
+                        <div class="item-tooltip">
+                            <h3 class="header-text">LEUTTCHURM BULLET JOURNAL</h3>
+                            <p>THE BEST BULLET JOURNALS EVER</p>
+                            <p>WHEN IN BAG:</p>
+                            <p class="stats-text">10 Intelligence</p>
+                        </div>
+                    </div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+
+
+                </div>
+
+                <div class="bottom-inventory-grid">
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item">
+                        <img  id="shuffle" src="ipod-shuffle.png">
+                        <div class="item-tooltip">
+                        <h3 class="header-text">iPOD SHUFFLE</h3>
+                            <p>NO SPOTIFY OVER HERE</p>
+                            <p class="stats-text">+10 AURA</p>
+                            </div>
+                        </div> 
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+
+                </div>
+                <div class="avatar-section">
+                    <img id="avatar-image" src="bun-bun!.png">
+                </div>
+
+                <div class="avatar-grid">
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item">
+                        <img src="dr-martens.png">
+                    </div>
+
+                </div>
+
+                <div class="crafting-table">
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                </div>
+
+                <div class="crafting-table-result">
+                    <div class="item"></div>
+
+                </div>
+
+            </div>
+            <div class="container-under-inventory">
+                <p>You can add some details under the inventory as well!</p>
+
+            </div>
+
+</div>
+    <script>
+        const clickableArea = document.getElementById("inventory-button");
+        var inventoryModal = document.getElementById("inventory");
+        const ignoreLink = document.querySelector('a');
+        const audioPlayer = document.getElementById("soundtrack");
+        const audioPlayerContainer = document.getElementById("music-player");
+        const soundIcon = document.getElementById("sound-icon");
+        const buttonSoundEffect = document.getElementById("open-button-sound");
+
+
+        const itemsInInventory = document.getElementsByClassName("item");
+        const itemModals = document.getElementsByClassName("item-tooltip");
+
+        var isPlaying = false;
+        var muteIcon = true;
+
+        clickableArea.addEventListener("click",openInventory);
+        audioPlayerContainer.addEventListener("click", toggleAudio);
+        soundIcon.addEventListener("click", toggleIcon);
+
+
+        function openInventory(e){
+            inventoryModal.style.display = "block";
+            buttonSoundEffect.play();
+        }
+
+        function toggleAudio(e){
+            isPlaying ? enableMute(e) : disableMute(e);
+        }
+        function toggleIcon(e){
+            muteIcon ? muteIconDisabled(e) : muteIconEnabled(e);
+        }
+
+        function enableMute(){
+            audioPlayer.muted = true;
+            audioPlayer.volume = 0;
+            buttonSoundEffect.volume = 0;
+            isPlaying = false;
+            // console.log(isPlaying);
+        }
+
+        function disableMute(){
+            audioPlayer.muted = false;
+            buttonSoundEffect.volume = 1;
+            audioPlayer.volume = 1;
+            isPlaying = true;
+        }
+
+        function muteIconEnabled(){
+            soundIcon.src = "sound-icon-muted.png";
+            muteIcon = true;
+            console.log("muteIcon: " + muteIcon);
+        }
+
+        function muteIconDisabled(){
+            soundIcon.src = "sound-icon-playing.png";
+            muteIcon = false;
+            console.log("muteIcon: " + muteIcon);
+        }
+
+        window.onclick = function(event){
+            if (event.target == inventoryModal){
+                inventoryModal.style.display = "none";
+            }
+        }
+
+
+        Array.from(itemsInInventory).forEach((item =>{
+            item.addEventListener("mouseover", openItemTooltip);
+            item.addEventListener("mouseleave", closeItemTooltip);
+
+        }));
+
+        function openItemTooltip(e){
+            const currentItem = e.currentTarget.getElementsByClassName("item-tooltip");
+            Array.from(currentItem).forEach((item =>{
+                item.style.display = "block";
+            }))
+        }
+
+        function closeItemTooltip(e){
+            const currentItem = e.currentTarget.getElementsByClassName("item-tooltip");
+            Array.from(currentItem).forEach((item =>{
+                item.style.display = "none";
+            }))
+
+        }
+
+    </script>
+
+    
+</body>
+</html>
