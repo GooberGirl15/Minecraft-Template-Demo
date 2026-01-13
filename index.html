@@ -10,25 +10,32 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
+
         <div class="title">
             <img src="title.png">
             <div id="music-player">
-        <audio id="soundtrack"src="https://lambda.vgmtreasurechest.com/soundtracks/minecraft/wbslavdc/2-13.%20Aria%20Math.mp3">
-        </audio>
+        <audio id="soundtrack"src="https://lambda.vgmtreasurechest.com/soundtracks/minecraft/wbslavdc/2-13.%20Aria%20Math.mp3"></audio>
          <img id=sound-icon src="sound-icon-muted.png">
-        </div>
-        </div>
+        </div> <!-- End of music-player div -->
+        </div> <!-- End of title div -->
+
+
         <div class="inventory-button-container">
             <div id="inventory-button">
-                <p>Click to open the inventory.</p>
+                <p>Click to open the inventory.</p> <!-- Inventory button text-->
                 <audio id="open-button-sound" src="https://minecraft.wiki/images/transcoded/Select_pattern1.ogg/Select_pattern1.ogg.mp3">
                 </audio>
-            </div>
-        </div>
+            </div> <!-- End of inventory-button div -->
+            <div><!-- This might be a good spot to put a back button to link to the rest of your website.--></div>
+        </div> <!-- End of inventory-button-container div -->
+
+
         <div id="inventory" class="inventory-container">
             <div class="minecraft-inventory">
+                <!-- MAIN SECTION OF INVENTORY -->
                 <div class = "inventory-grid">
 
+                    <!-- Row 1 -->
                     <div class="item">
                         <img src="sony-headphones-inventory.png">
                         <div class="item-tooltip">
@@ -36,7 +43,6 @@
                         <p>KINDA TRASH WOULDN'T RECOMMEND.</p>
                         </div>
                     </div>
-
                     <div class="item"></div>
                     <div class="item"></div>
                     <div class="item"></div>
@@ -46,6 +52,7 @@
                     <div class="item"></div>
                     <div class="item"></div>
 
+                    <!-- Row 2 -->
                     <div class="item"></div>
                     <div class="item"></div>
                     <div class="item">
@@ -64,6 +71,7 @@
                     <div class="item"></div>
                     <div class="item"></div>
 
+                    <!-- Row 3  -->
                     <div class="item"></div>
                     <div class="item"></div>
                     <div class="item"></div>
@@ -73,10 +81,9 @@
                     <div class="item"></div>
                     <div class="item"></div>
                     <div class="item"></div>
+                </div> <!-- End of inventory-grid div-->
 
-
-                </div>
-
+                <!-- BOTTOM SECTION OF INVENTORY-->
                 <div class="bottom-inventory-grid">
                     <div class="item"></div>
                     <div class="item"></div>
@@ -94,11 +101,12 @@
                     <div class="item"></div>
                     <div class="item"></div>
                     <div class="item"></div>
-
-                </div>
+                </div> <!-- End of bottom-inventory-grid div-->
+                
+                <!-- TOP SECTION OF INVENTORY -->
                 <div class="avatar-section">
                     <img id="avatar-image" src="bun-bun!.png">
-                </div>
+                </div> <!-- End of avatar-section div-->
 
                 <div class="avatar-grid">
                     <div class="item"></div>
@@ -107,53 +115,58 @@
                     <div class="item">
                         <img src="dr-martens.png">
                     </div>
-
-                </div>
+                </div> <!-- End of avatar-grid div-->
 
                 <div class="crafting-table">
                     <div class="item"></div>
                     <div class="item"></div>
                     <div class="item"></div>
                     <div class="item"></div>
-                </div>
+                </div> <!-- End of crafting-table div-->
 
                 <div class="crafting-table-result">
                     <div class="item"></div>
+                </div> <!-- End of crafting-table-result div-->
 
-                </div>
+            </div> <!-- End of minecraft-inventory div-->
 
-            </div>
             <div class="container-under-inventory">
                 <p>You can add some details under the inventory as well!</p>
+                <p>Might be another good spot to add a back button to the rest of your website.</p>
 
             </div>
 
 </div>
     <script>
+        // Variable Declarations 
+        // IdS
         const clickableArea = document.getElementById("inventory-button");
-        var inventoryModal = document.getElementById("inventory");
+        const inventoryModal = document.getElementById("inventory");
         const ignoreLink = document.querySelector('a');
         const audioPlayer = document.getElementById("soundtrack");
         const audioPlayerContainer = document.getElementById("music-player");
         const soundIcon = document.getElementById("sound-icon");
         const buttonSoundEffect = document.getElementById("open-button-sound");
 
-
+        // Classes
         const itemsInInventory = document.getElementsByClassName("item");
         const itemModals = document.getElementsByClassName("item-tooltip");
 
+        // Booleans
         var isPlaying = false;
         var muteIcon = true;
 
+        
+
+        // Function Delcarations
         clickableArea.addEventListener("click",openInventory);
         audioPlayerContainer.addEventListener("click", toggleAudio);
         soundIcon.addEventListener("click", toggleIcon);
 
 
-        function openInventory(e){
-            inventoryModal.style.display = "block";
-            buttonSoundEffect.play();
-        }
+        // The audio does not autoplay. These functions toggle the speaker image and the audio from mute to unmute.  
+        audioPlayer.muted = true;
+        buttonSoundEffect.muted = true;
 
         function toggleAudio(e){
             isPlaying ? enableMute(e) : disableMute(e);
@@ -164,15 +177,13 @@
 
         function enableMute(){
             audioPlayer.muted = true;
-            audioPlayer.volume = 0;
-            buttonSoundEffect.volume = 0;
+            buttonSoundEffect.muted = true;
             isPlaying = false;
         }
 
         function disableMute(){
             audioPlayer.muted = false;
-            buttonSoundEffect.volume = 1;
-            audioPlayer.volume = 1;
+            buttonSoundEffect.muted = false;
             audioPlayer.play();
             isPlaying = true;
         }
@@ -185,6 +196,14 @@
         function muteIconDisabled(){
             soundIcon.src = "sound-icon-playing.png";
             muteIcon = false;
+
+        }
+
+        // These two functions control entering and exiting the inventory.
+
+          function openInventory(e){
+            inventoryModal.style.display = "block";
+            buttonSoundEffect.play();
         }
 
         window.onclick = function(event){
@@ -193,7 +212,7 @@
             }
         }
 
-
+        // These next three functions create the interaction for hovering over an item and seeing a tooltip. 
         Array.from(itemsInInventory).forEach((item =>{
             item.addEventListener("mouseover", openItemTooltip);
             item.addEventListener("mouseleave", closeItemTooltip);
@@ -220,4 +239,3 @@
     
 </body>
 </html>
-
