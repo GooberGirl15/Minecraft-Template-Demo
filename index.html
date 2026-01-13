@@ -167,26 +167,24 @@
             audioPlayer.volume = 0;
             buttonSoundEffect.volume = 0;
             isPlaying = false;
-            // console.log(isPlaying);
         }
 
         function disableMute(){
             audioPlayer.muted = false;
             buttonSoundEffect.volume = 1;
             audioPlayer.volume = 1;
+            audioPlayer.play();
             isPlaying = true;
         }
 
         function muteIconEnabled(){
             soundIcon.src = "sound-icon-muted.png";
             muteIcon = true;
-            console.log("muteIcon: " + muteIcon);
         }
 
         function muteIconDisabled(){
             soundIcon.src = "sound-icon-playing.png";
             muteIcon = false;
-            console.log("muteIcon: " + muteIcon);
         }
 
         window.onclick = function(event){
@@ -222,3 +220,4 @@
     
 </body>
 </html>
+
